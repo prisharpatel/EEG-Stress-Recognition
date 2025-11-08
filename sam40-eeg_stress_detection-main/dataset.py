@@ -34,7 +34,7 @@ def load_dataset(data_type="ica_filtered", test_type="Arithmetic"):
         dir = v.DIR_ICA_FILTERED
         data_key = 'Clean_data'
         
-    dataset = np.empty((120, 32, 3200))
+    dataset = np.empty((120, 32, 3200)) # 120 is number of samples, 32 is channels , 3200 is number of data points per sample
 
     counter = 0
     for filename in os.listdir(dir):
