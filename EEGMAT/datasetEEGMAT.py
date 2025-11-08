@@ -25,16 +25,11 @@ def load_dataset(data_type="raw", test_type="task"):
     # if data_type == "ica_filtered" and test_type != "Arithmetic":
     #     print("Data of type", data_type, "does not have test type", test_type)
     #     return 0
-
+    print("hi!!")
     if data_type == "raw":
         dir = v.DIR_RAW
         data_key = 'Data'
-    elif data_type == "wt_filtered":
-        dir = v.DIR_FILTERED
-        data_key = 'Clean_data'
-    else:
-        dir = v.DIR_ICA_FILTERED
-        data_key = 'Clean_data'
+    
         
     dataset = []
 
