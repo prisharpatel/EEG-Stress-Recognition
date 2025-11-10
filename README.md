@@ -1,0 +1,1 @@
+In this project, our objective is to assess the generalizability and performance across datasets for the model by testing it on a another similar dataset called the EEGMAT dataset from Zyma et. al [4]. Our second objective is to train the models on the EEGMAT datset to compare accuracy of classifications across the SAM40 trained model versus the EE
