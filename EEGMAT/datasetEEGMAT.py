@@ -18,23 +18,20 @@ def load_dataset(data_type="raw", test_type="task"):
         
 
     '''
+    print("hi!")
     assert (test_type in v.TEST_TYPES)
-
     assert (data_type in v.DATA_TYPES)
+
     
-    # if data_type == "ica_filtered" and test_type != "Arithmetic":
-    #     print("Data of type", data_type, "does not have test type", test_type)
-    #     return 0
-    print("hi!!")
     if data_type == "raw":
         dir = v.DIR_RAW
         data_key = 'Data'
     
         
     dataset = []
-
+    print(os.listdir("directory", dir))
     counter = 0
-    for filename in os.listdir(dir):
+    for f in os.listdir(dir):
         # go through for loop only if looking at backgroudn or task
         if test_type == "background" and not f.endswith("_1.edf"):
             continue
