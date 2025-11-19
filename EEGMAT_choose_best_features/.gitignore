@@ -1,0 +1,13 @@
+# Ignore dataset and processed files
+processed_data/
+eeg-during-mental-arithmetic-tasks-1.0.0/
+
+# Ignore large or temporary files
+*.fif
+*.edf
+*.csv
+*.npy
+*.pkl
+*.log
+__pycache__/
+*.ipynb_checkpoints/
