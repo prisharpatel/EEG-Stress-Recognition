@@ -72,7 +72,7 @@ def make_nclassif(X, y, n_splits=10, feature_selector=None, list_classifiers=Non
         y_test = y.iloc[test_index]
         
         if verbose:
-        	print('Split {0:2d}/{1:2d}'.format(s+1, n_splits))
+            print('Split {0:2d}/{1:2d}'.format(s+1, n_splits))
         
         # Fit each model
         for model in list_classifiers:
@@ -219,12 +219,10 @@ def make_nclassif_random_splits(X, y, n_splits=10, feature_selector=None, list_c
             y_pred = clf.predict(x_test)
             conf_matrices.append(confusion_matrix(y_test, y_pred))
             if model.__class__.__name__ == 'MLPClassifier':
-            	modelname = model.__class__.__name__+'_'+str(len(model.hidden_layer_sizes))+'_'+str(model.hidden_layer_sizes[0])
-            else :
-            	modelname = model.__class__.__name__
-            
-            
-            
+                modelname = model.__class__.__name__+'_'+str(len(model.hidden_layer_sizes))+'_'+str(model.hidden_layer_sizes[0])
+            else:
+                modelname = model.__class__.__name__
+
             new_row = {'n':int(s),'f1-score':f1_score(y_test, y_pred, average='weighted'),
                                     'accuracy':balanced_accuracy_score(y_test, y_pred), 
                                     'classifier':modelname, 'time':toc-tic}
