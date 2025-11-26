@@ -4,7 +4,7 @@ import pandas as pd
 import scipy
 import variables as v
 
-def load_dataset(data_type="ica_filtered", test_type="Arithmetic"):
+def load_dataset(data_type="raw", test_type=["Arithmetic", "Stroop", "Mirroring"]):
     '''
     Loads data from the SAM 40 Dataset.
     
@@ -16,13 +16,13 @@ def load_dataset(data_type="ica_filtered", test_type="Arithmetic"):
         ndarray: The specified dataset.
 
     '''
-    assert (test_type in v.TEST_TYPES)
+    # assert (test_type in v.TEST_TYPES)
 
-    assert (data_type in v.DATA_TYPES)
+    # assert (data_type in v.DATA_TYPES)
 
-    if data_type == "ica_filtered" and test_type != "Arithmetic":
-        print("Data of type", data_type, "does not have test type", test_type)
-        return 0
+    # if data_type == "ica_filtered" and test_type != "Arithmetic":
+    #     print("Data of type", data_type, "does not have test type", test_type)
+    #     return 0
 
     if data_type == "raw":
         dir = v.DIR_RAW
@@ -34,12 +34,12 @@ def load_dataset(data_type="ica_filtered", test_type="Arithmetic"):
         dir = v.DIR_ICA_FILTERED
         data_key = 'Clean_data'
         
-    dataset = np.empty((120, 32, 3200)) # 120 is number of samples, 32 is channels , 3200 is number of data points per sample
+    dataset = np.empty((480, 32, 3200)) # 120 is number of samples, 32 is channels , 3200 is number of data points per sample
 
     counter = 0
     for filename in os.listdir(dir):
-        if test_type not in filename:
-            continue
+        # if test_type not in filename:
+        #     continue
 
         f = os.path.join(dir, filename)
         data = scipy.io.loadmat(f)[data_key]
@@ -55,11 +55,13 @@ def load_labels():
     Returns:
         ndarray: The labels.
     '''
-    labels = pd.read_excel(v.LABELS_PATH)
+    # labels = pd.read_excel(v.LABELS_PATH)
+    pd.read_excel(v.LABELS_PATH, engine="openpyxl")
+
     labels = labels.rename(columns=v.COLUMNS_TO_RENAME)
     labels = labels[1:]
     labels = labels.astype("int")
-    labels = labels > 5
+    labels = labels > 5 
     return labels
 
 
@@ -103,6 +105,7 @@ def split_data(data, sfreq):
     '''
 
     n_trials, n_channels, n_samples = data.shape
+    print(n_trials, n_channels, n_samples)
 
     epoched_data = np.empty((n_trials, n_samples//sfreq, n_channels, sfreq))
     for i in range(data.shape[0]):

@@ -91,6 +91,7 @@ def fractal_features(data):
 
     '''
     n_trials, n_secs, n_channels, _ = data.shape
+    print(n_trials, n_secs, n_channels)
     features_per_channel = 2
 
     features = np.empty([n_trials, n_secs, n_channels * features_per_channel])
